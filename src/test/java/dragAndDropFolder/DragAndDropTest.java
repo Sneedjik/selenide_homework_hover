@@ -22,6 +22,8 @@ public class DragAndDropTest {
     @Test
     void dragAndDropTest() {
         open("/drag_and_drop");
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
         Actions actions = new Actions(Selenide.webdriver().object());
         actions.dragAndDrop($("#column-a"), $("#column-b")).perform();
         $("#column-a").shouldHave(text("B"));
