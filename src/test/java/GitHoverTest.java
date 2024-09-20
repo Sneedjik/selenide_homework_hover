@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class GitHoverTest {
 
@@ -13,9 +14,11 @@ public class GitHoverTest {
     }
 
     @Test
-    void hoverSolutionsOnGit() {
+    void hoverSolutionsOnGitTest() {
         open(baseUrl);
-
+        $(".HeaderMenu-nav").$$("ul li button").findBy(text("Solutions")).hover();
+        $("#solutions-by-size-heading").parent().$("a").shouldHave(text("Enterprise")).click();
+        $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform."));
     }
 
 }
